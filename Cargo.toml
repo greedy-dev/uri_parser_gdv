@@ -1,11 +1,11 @@
 [package]
-name = "uri_parser"
+name = "uri_parser_gdv"
 version = "0.1.0"
 edition = "2021"
 license = "MIT"
 description = "URI Parser is a pest-based parser that breaks URIs into structured components."
-homepage = "https://github.com/greedy-dev/uri_parser"
-repository = "https://github.com/greedy-dev/uri_parser"
+homepage = "https://github.com/greedy-dev/uri_parser_gdv"
+repository = "https://github.com/greedy-dev/uri_parser_gdv"
 readme = "README.md"
 
 [dependencies]

@@ -1,5 +1,5 @@
 use clap::Parser;
-use uri_parser::{ParseError, ParsedURI};
+use uri_parser_gdv::{ParseError, ParsedURI};
 
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]

@@ -1,5 +1,5 @@
 use pest::Parser;
-use uri_parser::{Rule, URIParser};
+use uri_parser_gdv::{Rule, URIParser};
 
 mod tests {
     use super::*;
