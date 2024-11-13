@@ -1,4 +1,4 @@
-# uri_parser
+# uri_parser_gdv
 URI Parser is a pest-based parser that breaks URIs into structured components
 
 The following components are supported:
@@ -12,7 +12,7 @@ The following components are supported:
 ## Usage
 #### Command
 ```
-uri_parser [OPTIONS] <URI>
+uri_parser_gdv [OPTIONS] <URI>
 ```
 #### Args and opts
 ```
