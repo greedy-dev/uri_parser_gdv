@@ -15,21 +15,23 @@ The following components are supported:
 - Subdomain: Optional subdomain that appears before the main domain.
 
 ## Usage
-#### Command
+#### Parsing URIs
 ```
-uri_parser_gdv [OPTIONS] <URI>
+uri_parser_gdv parse <URI>
+```
+#### Subcommands
+```
+  about          Print author's details
 ```
 #### Args and opts
 ```
-  <URI>  URI to parse
-  -v, --verbose  Verbose error display
   -h, --help     Print help
   -V, --version  Print version
 ```
 
 ## Example
 ```
-wss://user:pass@greedydev.io:1234/hello/world?msg=message&type=2
+uri_parser_gdv parse wss://user:pass@greedydev.io:1234/hello/world?msg=message&type=2
 ```
 #### Output:
 ```

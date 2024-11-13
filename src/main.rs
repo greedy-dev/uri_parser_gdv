@@ -1,23 +1,46 @@
-use clap::Parser;
+use clap::{Parser, Subcommand};
 use uri_parser_gdv::{ParseError, ParsedURI};
 
-#[derive(Parser, Debug)]
-#[command(version, about, long_about = None)]
-struct Args {
-    /// URI to parse
-    #[arg()]
-    uri: String,
-
-    /// Verbose error display
-    #[arg(short, long)]
-    verbose: bool,
+#[derive(Debug, Parser)]
+#[command(
+    version,
+    author = "Denys Hostylo <denis@greedydev.io>",
+    about = "A tool for parsing URIs and displaying individual components",
+    long_about = "This CLI tool parses URIs, displaying the scheme, user info, domain, IP, port, path, and query parameters when available",
+)]
+struct Cli {
+    #[command(subcommand)]
+    command: Commands,
 }
 
-fn main() -> Result<(), ParseError>{
-    let args = Args::parse();
-    
-    let parsed_uri = ParsedURI::parse(&args.uri)?;
+#[derive(Debug, Subcommand)]
+enum Commands {
+    #[command(arg_required_else_help = true)]
+    Parse {
+        #[arg(help = "The URI to parse")]
+        uri: String,
+    },
+    About,
+}
 
+fn main() -> Result<(), ParseError> {
+    let args = Cli::parse();
+
+    match args.command {
+        Commands::Parse { uri } => {
+            let parsed_uri = ParsedURI::parse(&uri)?;
+
+            print_uri_details(parsed_uri);
+        }
+        Commands::About => {
+            print_about();
+        }
+    }
+    
+    Ok(())
+}
+
+fn print_uri_details(parsed_uri: ParsedURI) {
     println!("Scheme: {}", parsed_uri.scheme);
     if let Some(username) = parsed_uri.username {
         println!("Username: {}", username);
@@ -43,6 +66,10 @@ fn main() -> Result<(), ParseError>{
             println!("  - {}: {}", param.0, param.1);
         })
     }
-    
-    Ok(())
+}
+
+fn print_about() {
+    println!("URI Parser Tool v{}", env!("CARGO_PKG_VERSION"));
+    println!("Developed by: Denys Hostylo");
+    println!("Description: A tool for parsing URIs and displaying components.");
 }
