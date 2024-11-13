@@ -1,6 +1,6 @@
 [package]
 name = "uri_parser_gdv"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 license = "MIT"
 description = "URI Parser is a pest-based parser that breaks URIs into structured components."
