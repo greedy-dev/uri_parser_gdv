@@ -9,7 +9,7 @@ username = @{ (ASCII_ALPHANUMERIC | "-" | "_" | "." | "%")+ }
 password = @{ (ASCII_ALPHANUMERIC | "-" | "_" | "." | "%")+ }
 
 host = { ipv4 | domain }
-ipv4 = @{ ASCII_DIGIT+ ~ "." ~ ASCII_DIGIT+ ~ "." ~ ASCII_DIGIT+ ~ "." ~ ASCII_DIGIT+ }
+ipv4 = @{ (ASCII_DIGIT{1,3} ~ "."){3} ~ ASCII_DIGIT{1,3} }
 domain = @{ ((ASCII_ALPHANUMERIC | "-")+ ~ ".")* ~ ASCII_ALPHA+ }
 
 port = @{ ":" ~ ASCII_DIGIT{1,5} }
