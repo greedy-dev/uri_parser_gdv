@@ -2,7 +2,7 @@ WHITESPACE = _{ " " | "\t" | "\n" | "\r" }
 
 uri = _{ scheme ~ "://" ~ authority? ~ host ~ port? ~ path? ~ query? }
 
-scheme = @{ ASCII_ALPHANUMERIC+ }
+scheme = @{ ASCII_ALPHA+ }
 
 authority = { username ~ (":" ~ password)? ~ "@" }
 username = @{ (ASCII_ALPHANUMERIC | "-" | "_" | "." | "%")+ }
