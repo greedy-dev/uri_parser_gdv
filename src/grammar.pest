@@ -1,0 +1,22 @@
+WHITESPACE = _{ " " | "\t" | "\n" | "\r" }
+
+uri = _{ scheme ~ "://" ~ authority? ~ host ~ port? ~ path? ~ query? }
+
+scheme = @{ ASCII_ALPHANUMERIC+ }
+
+authority = { username ~ (":" ~ password)? ~ "@" }
+username = @{ (ASCII_ALPHANUMERIC | "-" | "_" | "." | "%")+ }
+password = @{ (ASCII_ALPHANUMERIC | "-" | "_" | "." | "%")+ }
+
+host = { ipv4 | domain }
+ipv4 = @{ ASCII_DIGIT+ ~ "." ~ ASCII_DIGIT+ ~ "." ~ ASCII_DIGIT+ ~ "." ~ ASCII_DIGIT+ }
+domain = @{ ((ASCII_ALPHANUMERIC | "-")+ ~ ".")* ~ ASCII_ALPHA+ }
+
+port = @{ ":" ~ ASCII_DIGIT{1,5} }
+path = @{ "/" ~ (segment ~ "/")* ~ segment }
+segment = @{ (ASCII_ALPHANUMERIC | "-" | "_" | "." | "%")+ }
+
+query = { "?" ~ (key_value_pair ~ "&")* ~ key_value_pair }
+key_value_pair = { key ~ "=" ~ value }
+key = @{ (ASCII_ALPHANUMERIC | "-" | "_" | "." | "%")+ }
+value = @{ (ASCII_ALPHANUMERIC | "-" | "_" | "." | "%")+ }
