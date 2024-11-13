@@ -1,4 +1,8 @@
 # uri_parser_gdv
+
+Crates.io: https://crates.io/crates/uri_parser_gdv/
+
+---
 URI Parser is a pest-based parser that breaks URIs into structured components
 
 The following components are supported:
@@ -9,6 +13,7 @@ The following components are supported:
 - Path (segmented by /)
 - Query params
 - Subdomain: Optional subdomain that appears before the main domain.
+
 ## Usage
 #### Command
 ```
