@@ -7,6 +7,8 @@ use uri_parser_gdv::{ParseError, ParsedURI};
     author = "Denys Hostylo <denis@greedydev.io>",
     about = "A tool for parsing URIs and displaying individual components",
     long_about = "This CLI tool parses URIs, displaying the scheme, user info, domain, IP, port, path, and query parameters when available",
+    disable_help_flag = true,
+    disable_help_subcommand = true,
 )]
 struct Cli {
     #[command(subcommand)]
@@ -15,12 +17,15 @@ struct Cli {
 
 #[derive(Debug, Subcommand)]
 enum Commands {
-    #[command(arg_required_else_help = true)]
+    /// Parses provided URI
     Parse {
         #[arg(help = "The URI to parse")]
         uri: String,
     },
+    /// Prints details about author
     About,
+    /// Print this message or the help of the given subcommand(s)
+    Help,
 }
 
 fn main() -> Result<(), ParseError> {
@@ -34,6 +39,9 @@ fn main() -> Result<(), ParseError> {
         }
         Commands::About => {
             print_about();
+        }
+        Commands::Help => {
+            print_help();
         }
     }
     
@@ -72,4 +80,18 @@ fn print_about() {
     println!("URI Parser Tool v{}", env!("CARGO_PKG_VERSION"));
     println!("Developed by: Denys Hostylo");
     println!("Description: A tool for parsing URIs and displaying components.");
+}
+
+fn print_help() {
+    println!("A tool for parsing URIs and displaying individual components
+
+Usage: uri_parser_gdv <COMMAND>
+
+Commands:
+  parse  Parses provided URI
+  about  Prints details about author
+  help   Print this message or the help of the given subcommand(s)
+
+Options:
+  -V, --version  Print version")
 }
