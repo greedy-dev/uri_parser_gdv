@@ -4,7 +4,9 @@ version = "0.1.0"
 edition = "2021"
 license = "MIT"
 description = "URI Parser is a pest-based parser that breaks URIs into structured components."
-
+homepage = "https://github.com/greedy-dev/uri_parser"
+repository = "https://github.com/greedy-dev/uri_parser"
+readme = "README.md"
 
 [dependencies]
 clap = { version = "4.5.20", features = ["derive"] }
