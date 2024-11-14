@@ -46,4 +46,16 @@ mod tests {
         let res = URIParser::parse(Rule::port, ":8080");
         assert!(res.is_ok());
     }
+
+    #[test]
+    fn valid_uri() {
+        let res = URIParser::parse(Rule::uri, "wss://hello:world@greedydev.io:8080/hello/world?msg=one&lvl=2");
+        assert!(res.is_ok());
+    }
+
+    #[test]
+    fn invalid_uri() {
+        let res = URIParser::parse(Rule::uri, "/greedydev.io?msg=one&lvl=2");
+        assert!(res.is_err());
+    }
 }
