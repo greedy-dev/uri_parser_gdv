@@ -5,6 +5,9 @@ Crates.io: https://crates.io/crates/uri_parser_gdv/
 ---
 URI Parser is a pest-based parser that breaks URIs into structured components
 
+### Parsing Logic
+![Parsing logic](https://i.imgur.com/3aygL2j.png)
+
 The following components are supported:
 - Scheme
 - Authority: username and password
