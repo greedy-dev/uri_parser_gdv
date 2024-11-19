@@ -1,6 +1,6 @@
-use thiserror::Error;
-use pest_derive::Parser;
 use pest::Parser;
+use pest_derive::Parser;
+use thiserror::Error;
 
 #[derive(Parser)]
 #[grammar = "grammar.pest"]
@@ -26,16 +26,15 @@ pub struct ParsedURI {
 pub enum ParseError {
     #[error("Can't parse URI")]
     ParsingFailed,
-    
+
     #[error("Unexpected parsing rule encountered: {0}")]
     UnexpectedParsingRule(String),
 }
 
 impl ParsedURI {
     pub fn parse(uri: &str) -> Result<Self, ParseError> {
-        let pairs = URIParser::parse(Rule::uri, uri)
-            .map_err(|_| ParseError::ParsingFailed)?;
-        
+        let pairs = URIParser::parse(Rule::uri, uri).map_err(|_| ParseError::ParsingFailed)?;
+
         let mut scheme = String::new();
         let mut username = None;
         let mut password = None;
@@ -68,7 +67,7 @@ impl ParsedURI {
                 Rule::port => {
                     let port_str = pair.as_str().trim_start_matches(':');
                     port = Some(port_str.to_string())
-                },
+                }
                 Rule::path => path = Some(pair.as_str().to_string()),
                 Rule::query => {
                     for key_value_pair in pair.into_inner() {
@@ -90,7 +89,7 @@ impl ParsedURI {
             ip,
             port,
             path,
-            query_params
+            query_params,
         })
     }
 }

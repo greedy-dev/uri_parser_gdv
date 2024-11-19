@@ -8,7 +8,7 @@ use uri_parser_gdv::{ParseError, ParsedURI};
     about = "A tool for parsing URIs and displaying individual components",
     long_about = "This CLI tool parses URIs, displaying the scheme, user info, domain, IP, port, path, and query parameters when available",
     disable_help_flag = true,
-    disable_help_subcommand = true,
+    disable_help_subcommand = true
 )]
 struct Cli {
     #[command(subcommand)]
@@ -44,7 +44,7 @@ fn main() -> Result<(), ParseError> {
             print_help();
         }
     }
-    
+
     Ok(())
 }
 
@@ -83,7 +83,8 @@ fn print_about() {
 }
 
 fn print_help() {
-    println!("A tool for parsing URIs and displaying individual components
+    println!(
+        "A tool for parsing URIs and displaying individual components
 
 Usage: uri_parser_gdv <COMMAND>
 
@@ -93,5 +94,6 @@ Commands:
   help   Print this message or the help of the given subcommand(s)
 
 Options:
-  -V, --version  Print version")
+  -V, --version  Print version"
+    )
 }
